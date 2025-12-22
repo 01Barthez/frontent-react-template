@@ -23,7 +23,8 @@ services:
       - CHOKIDAR_USEPOLLING=true
       - NODE_ENV=development
       - PORT=5173
-    command: sh -c "npm install --silent && npm run dev"
+    # Expose Vite on 0.0.0.0 so the container port is accessible from the host
+    command: sh -c "npm install --silent && npm run dev -- --host 0.0.0.0"
     ports:
       - "5173:5173"
     stdin_open: true

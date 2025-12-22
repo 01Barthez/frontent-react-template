@@ -40,10 +40,13 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 # Copy the nginx config from the build context (docker/nginx.conf)
 COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
 
+# Install curl for healthchecks and lightweight runtime utilities
+RUN apk add --no-cache curl
+
 # Expose port and healthcheck
 EXPOSE 80
 HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
-  CMD wget -qO- --timeout=2 http://localhost/ || exit 1
+  CMD curl -fsS --max-time 2 http://localhost/ || exit 1
 
 USER nginx
 CMD ["nginx", "-g", "daemon off;"]
