@@ -3,7 +3,8 @@ services:
   app:
     build:
       context: ..
-      dockerfile: Dockerfile
+      # Use the Dockerfile inside the docker/ folder (path is relative to context)
+      dockerfile: docker/Dockerfile
       target: runner
     image: frontend-starter:local
     ports:
