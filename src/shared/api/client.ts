@@ -1,9 +1,9 @@
-import axios, { AxiosInstance, AxiosError, AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 import type { ApiError } from '../types';
 import { env } from '../../app/config/env';
 
 class ApiClient {
-  private client: AxiosInstance;
+  private client: any;
 
   constructor(baseURL: string) {
     this.client = axios.create({
@@ -15,7 +15,7 @@ class ApiClient {
     });
 
     // Attach token automatically if present (replace with your auth provider)
-    this.client.interceptors.request.use((config: AxiosRequestConfig) => {
+    this.client.interceptors.request.use((config: any) => {
       try {
         if (typeof window !== 'undefined') {
           const token = localStorage.getItem('authToken');
@@ -35,7 +35,7 @@ class ApiClient {
     // Centralized error mapping to ApiError shape
     this.client.interceptors.response.use(
       (res: any) => res,
-      (error: AxiosError) => {
+      (error: any) => {
         if (error.response) {
           const data = (error.response.data || {}) as any;
           const apiError: ApiError = {
@@ -55,7 +55,7 @@ class ApiClient {
     );
   }
 
-  private async request<T>(config: AxiosRequestConfig): Promise<T> {
+  private async request<T>(config: any): Promise<T> {
     const response = await this.client.request<T>(config);
     return response.data as unknown as T;
   }
