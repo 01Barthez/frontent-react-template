@@ -56,7 +56,7 @@ class ApiClient {
   }
 
   private async request<T>(config: any): Promise<T> {
-    const response = await this.client.request<T>(config);
+    const response = await this.client.request(config);
     return response.data as unknown as T;
   }
 
