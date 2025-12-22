@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 export interface MenuItem {
   id: string;
@@ -21,18 +21,17 @@ export const useMenuBrowse = () => {
       // Mock data
       const mockItems: MenuItem[] = [
         {
-          id: "1",
-          name: "Burger",
+          id: '1',
+          name: 'Burger',
           price: 12.99,
-          description: "Delicious burger",
+          description: 'Delicious burger',
         },
-        { id: "2", name: "Pizza", price: 15.99, description: "Cheesy pizza" },
+        { id: '2', name: 'Pizza', price: 15.99, description: 'Cheesy pizza' },
       ];
 
       setItems(mockItems);
     } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : "Failed to fetch menu";
+      const errorMessage = err instanceof Error ? err.message : 'Failed to fetch menu';
       setError(errorMessage);
     } finally {
       setIsLoading(false);

@@ -1,14 +1,11 @@
-import React from "react";
+import React from 'react';
 
 export interface CartWidgetProps {
   className?: string;
   itemCount?: number;
 }
 
-export const CartWidget: React.FC<CartWidgetProps> = ({
-  className,
-  itemCount = 0,
-}) => {
+export const CartWidget: React.FC<CartWidgetProps> = ({ className, itemCount = 0 }) => {
   return (
     <div className={className}>
       {/* TODO: Implement cart widget component */}

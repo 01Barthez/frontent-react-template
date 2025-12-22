@@ -1,13 +1,13 @@
-import { ID } from "../../../shared/types";
-import { Dish } from "../../dish/model/dish.types";
+import { ID } from '../../../shared/types';
+import { Dish } from '../../dish/model/dish.types';
 
 export type OrderStatus =
-  | "pending"
-  | "confirmed"
-  | "preparing"
-  | "ready"
-  | "delivered"
-  | "cancelled";
+  | 'pending'
+  | 'confirmed'
+  | 'preparing'
+  | 'ready'
+  | 'delivered'
+  | 'cancelled';
 
 export interface OrderItem {
   dishId: ID;

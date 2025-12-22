@@ -1,4 +1,4 @@
-import type { ApiError } from "../types";
+import type { ApiError } from '../types';
 
 class ApiClient {
   private baseURL: string;
@@ -7,15 +7,12 @@ class ApiClient {
     this.baseURL = baseURL;
   }
 
-  private async request<T>(
-    endpoint: string,
-    options: RequestInit = {}
-  ): Promise<T> {
+  private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
     const url = `${this.baseURL}${endpoint}`;
 
     const config: RequestInit = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         ...options.headers,
       },
       ...options,
@@ -46,46 +43,46 @@ class ApiClient {
       return await response.json();
     } catch (error: unknown) {
       // If it's already an ApiError-shaped object, rethrow it
-      if (error && typeof error === "object" && "message" in (error as any)) {
+      if (error && typeof error === 'object' && 'message' in (error as any)) {
         throw error as ApiError;
       }
 
       // Erreur réseau ou autre
-      throw { message: "Network error or unexpected error occurred" } as ApiError;
+      throw { message: 'Network error or unexpected error occurred' } as ApiError;
     }
   }
 
   async get<T>(endpoint: string): Promise<T> {
-    return this.request<T>(endpoint, { method: "GET" });
+    return this.request<T>(endpoint, { method: 'GET' });
   }
 
   async post<T>(endpoint: string, data?: any): Promise<T> {
     return this.request<T>(endpoint, {
-      method: "POST",
+      method: 'POST',
       body: data ? JSON.stringify(data) : undefined,
     });
   }
 
   async put<T>(endpoint: string, data?: any): Promise<T> {
     return this.request<T>(endpoint, {
-      method: "PUT",
+      method: 'PUT',
       body: data ? JSON.stringify(data) : undefined,
     });
   }
 
   async patch<T>(endpoint: string, data?: any): Promise<T> {
     return this.request<T>(endpoint, {
-      method: "PATCH",
+      method: 'PATCH',
       body: data ? JSON.stringify(data) : undefined,
     });
   }
 
   async delete<T>(endpoint: string): Promise<T> {
-    return this.request<T>(endpoint, { method: "DELETE" });
+    return this.request<T>(endpoint, { method: 'DELETE' });
   }
 }
 
 // TODO: Importer depuis env.ts quand disponible
-const apiClient = new ApiClient("http://localhost:3000/api");
+const apiClient = new ApiClient('http://localhost:3000/api');
 
 export { apiClient, ApiClient };

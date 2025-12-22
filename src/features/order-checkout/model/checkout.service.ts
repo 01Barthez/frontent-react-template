@@ -6,16 +6,16 @@ export const checkoutService = {
     paymentInfo: { cardNumber: string; expiry: string; cvv: string };
   }) {
     // Mock API call
-    const response = await fetch("/api/checkout", {
-      method: "POST",
+    const response = await fetch('/api/checkout', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(orderData),
     });
 
     if (!response.ok) {
-      throw new Error("Checkout failed");
+      throw new Error('Checkout failed');
     }
 
     return response.json();

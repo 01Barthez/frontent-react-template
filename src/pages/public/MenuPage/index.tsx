@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "../../../shared/ui/Button";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/shared/ui/Button';
 
-const MenuPage: React.FC = () => {
+export const MenuPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8">
@@ -40,4 +40,3 @@ const MenuPage: React.FC = () => {
   );
 };
 
-export default MenuPage;

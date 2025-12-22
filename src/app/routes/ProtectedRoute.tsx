@@ -1,15 +1,12 @@
-import React from "react";
-import { useAuth } from "../providers/AuthProvider";
+import React from 'react';
+import { useAuth } from '../providers/AuthProvider';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
   requiredRoles?: string[];
 }
 
-export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
-  children,
-  requiredRoles = [],
-}) => {
+export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, requiredRoles = [] }) => {
   const { isAuthenticated, user, loading } = useAuth();
 
   if (loading) {

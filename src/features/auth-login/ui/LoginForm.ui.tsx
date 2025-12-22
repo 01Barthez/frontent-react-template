@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export interface LoginFormProps {
   onSubmit: (data: { email: string; password: string }) => void;
@@ -6,13 +6,9 @@ export interface LoginFormProps {
   error?: string;
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({
-  onSubmit,
-  isLoading,
-  error,
-}) => {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading, error }) => {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,9 +37,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           required
         />
       </div>
-      {error && <div style={{ color: "red" }}>{error}</div>}
+      {error && <div style={{ color: 'red' }}>{error}</div>}
       <button type="submit" disabled={isLoading}>
-        {isLoading ? "Loading..." : "Login"}
+        {isLoading ? 'Loading...' : 'Login'}
       </button>
     </form>
   );

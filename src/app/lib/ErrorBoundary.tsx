@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { analytics } from "./analytics";
+import React, { Component } from 'react';
+import { analytics } from './analytics';
 
 interface Props {
   children: React.ReactNode;
@@ -28,7 +28,7 @@ export class ErrorBoundary extends Component<Props, State> {
       errorBoundary: true,
     });
 
-    console.error("ErrorBoundary caught an error:", error, errorInfo);
+    console.error('ErrorBoundary caught an error:', error, errorInfo);
   }
 
   render() {
@@ -61,8 +61,8 @@ export class ErrorBoundary extends Component<Props, State> {
               Quelque chose s'est mal passé
             </h1>
             <p className="text-gray-600 text-center mb-4">
-              Nous nous excusons pour la gêne occasionnée. Veuillez rafraîchir
-              la page ou réessayer plus tard.
+              Nous nous excusons pour la gêne occasionnée. Veuillez rafraîchir la page ou réessayer
+              plus tard.
             </p>
             <button
               onClick={() => window.location.reload()}

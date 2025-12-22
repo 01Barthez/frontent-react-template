@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "../../../../shared/ui/Button";
-import { useAuth } from "../../../../app/providers/AuthProvider";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/shared/ui/Button';
+import { useAuth } from '@/app/providers/AuthProvider';
 
-const AdminDashboardPage: React.FC = () => {
+export const AdminDashboardPage: React.FC = () => {
   const { user, logout } = useAuth();
 
   return (
@@ -12,12 +12,8 @@ const AdminDashboardPage: React.FC = () => {
         <div className="bg-white rounded-lg shadow p-6 mb-8">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">
-                Administration
-              </h1>
-              <p className="text-gray-600">
-                Connecté en tant que {user?.email}
-              </p>
+              <h1 className="text-3xl font-bold text-gray-900">Administration</h1>
+              <p className="text-gray-600">Connecté en tant que {user?.email}</p>
             </div>
             <Button onClick={logout} variant="outline">
               Se déconnecter
@@ -28,17 +24,13 @@ const AdminDashboardPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="bg-white rounded-lg shadow p-6">
             <h3 className="text-xl font-semibold mb-4">Gestion des plats</h3>
-            <p className="text-gray-600 mb-4">
-              Ajouter, modifier ou supprimer des plats
-            </p>
+            <p className="text-gray-600 mb-4">Ajouter, modifier ou supprimer des plats</p>
             <Button>Gérer les plats</Button>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
             <h3 className="text-xl font-semibold mb-4">Commandes</h3>
-            <p className="text-gray-600 mb-4">
-              Voir et gérer toutes les commandes
-            </p>
+            <p className="text-gray-600 mb-4">Voir et gérer toutes les commandes</p>
             <Button variant="outline">Voir les commandes</Button>
           </div>
 
@@ -50,9 +42,7 @@ const AdminDashboardPage: React.FC = () => {
 
           <div className="bg-white rounded-lg shadow p-6">
             <h3 className="text-xl font-semibold mb-4">Statistiques</h3>
-            <p className="text-gray-600 mb-4">
-              Voir les métriques de l'application
-            </p>
+            <p className="text-gray-600 mb-4">Voir les métriques de l'application</p>
             <Button variant="outline">Voir les stats</Button>
           </div>
 
@@ -73,4 +63,4 @@ const AdminDashboardPage: React.FC = () => {
   );
 };
 
-export default AdminDashboardPage;
+// named export at declaration

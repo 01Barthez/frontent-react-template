@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 interface CheckoutStep {
   id: string;
@@ -12,36 +12,33 @@ interface CheckoutProcessProps {
   onCancel: () => void;
 }
 
-export const CheckoutProcess: React.FC<CheckoutProcessProps> = ({
-  onComplete,
-  onCancel,
-}) => {
+export const CheckoutProcess: React.FC<CheckoutProcessProps> = ({ onComplete, onCancel }) => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [checkoutData, setCheckoutData] = useState({});
 
   // TODO: Define actual checkout steps
   const steps: CheckoutStep[] = [
     {
-      id: "cart-review",
-      title: "Review Cart",
+      id: 'cart-review',
+      title: 'Review Cart',
       component: () => <div>Cart Review Step - TODO</div>,
       isCompleted: false,
     },
     {
-      id: "delivery-info",
-      title: "Delivery Information",
+      id: 'delivery-info',
+      title: 'Delivery Information',
       component: () => <div>Delivery Info Step - TODO</div>,
       isCompleted: false,
     },
     {
-      id: "payment",
-      title: "Payment",
+      id: 'payment',
+      title: 'Payment',
       component: () => <div>Payment Step - TODO</div>,
       isCompleted: false,
     },
     {
-      id: "confirmation",
-      title: "Confirmation",
+      id: 'confirmation',
+      title: 'Confirmation',
       component: () => <div>Confirmation Step - TODO</div>,
       isCompleted: false,
     },
@@ -75,9 +72,9 @@ export const CheckoutProcess: React.FC<CheckoutProcessProps> = ({
         {steps.map((step, index) => (
           <div
             key={step.id}
-            className={`step-indicator ${
-              index <= currentStepIndex ? "active" : ""
-            } ${step.isCompleted ? "completed" : ""}`}
+            className={`step-indicator ${index <= currentStepIndex ? 'active' : ''} ${
+              step.isCompleted ? 'completed' : ''
+            }`}
           >
             <span>{index + 1}</span>
             <span>{step.title}</span>
@@ -111,4 +108,4 @@ export const CheckoutProcess: React.FC<CheckoutProcessProps> = ({
   );
 };
 
-export default CheckoutProcess;
+// CheckoutProcess exported at declaration site

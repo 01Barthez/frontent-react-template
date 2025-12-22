@@ -1,7 +1,7 @@
-import React, { Suspense } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { routes } from "./routes";
-import { ProtectedRoute } from "./routes/ProtectedRoute";
+import React, { Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { routes } from './routes';
+import { ProtectedRoute } from './routes/ProtectedRoute';
 
 const LoadingSpinner = () => (
   <div className="min-h-screen flex items-center justify-center">

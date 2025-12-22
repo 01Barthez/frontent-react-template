@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "../../../shared/ui/Button";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '../../../shared/ui/Button';
 
-const HomePage: React.FC = () => {
+export const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="container mx-auto px-4 py-16">
@@ -11,8 +11,7 @@ const HomePage: React.FC = () => {
             Bienvenue sur notre plateforme
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Découvrez notre nouvelle architecture applicative moderne et
-            performante.
+            Découvrez notre nouvelle architecture applicative moderne et performante.
           </p>
           <div className="space-x-4">
             <Link to="/menu">
@@ -30,4 +29,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+// named export at declaration

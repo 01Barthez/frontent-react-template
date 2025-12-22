@@ -1,51 +1,59 @@
-import { lazy } from "react";
-import { RouteConfig } from "./routes/RouteTypes";
+import { lazy } from 'react';
+import { RouteConfig } from './routes/RouteTypes';
 
 // Lazy loading des pages pour améliorer les performances
-const HomePage = lazy(() => import("../pages/public/HomePage"));
-const MenuPage = lazy(() => import("../pages/public/MenuPage"));
-const CustomerDashboardPage = lazy(
-  () => import("../pages/app/Customer/DashboardPage")
+const HomePage = lazy(() =>
+  import('../pages/public/HomePage').then((m) => ({ default: (m as any).HomePage })),
 );
-const AdminDashboardPage = lazy(
-  () => import("../pages/app/Admin/DashboardPage")
+const MenuPage = lazy(() =>
+  import('../pages/public/MenuPage').then((m) => ({ default: (m as any).MenuPage })),
+);
+const CustomerDashboardPage = lazy(() =>
+  import('../pages/app/Customer/DashboardPage').then((m) => ({
+    default: (m as any).CustomerDashboardPage,
+  })),
+);
+const AdminDashboardPage = lazy(() =>
+  import('../pages/app/Admin/DashboardPage').then((m) => ({
+    default: (m as any).AdminDashboardPage,
+  })),
 );
 
 export const routes: RouteConfig[] = [
   {
-    path: "/",
+    path: '/',
     component: HomePage,
     meta: {
-      title: "Accueil",
-      layout: "public",
+      title: 'Accueil',
+      layout: 'public',
     },
   },
   {
-    path: "/menu",
+    path: '/menu',
     component: MenuPage,
     meta: {
-      title: "Menu",
-      layout: "public",
+      title: 'Menu',
+      layout: 'public',
     },
   },
   {
-    path: "/dashboard",
+    path: '/dashboard',
     component: CustomerDashboardPage,
     meta: {
-      title: "Mon Compte",
+      title: 'Mon Compte',
       requiresAuth: true,
-      roles: ["customer"],
-      layout: "app",
+      roles: ['customer'],
+      layout: 'app',
     },
   },
   {
-    path: "/admin",
+    path: '/admin',
     component: AdminDashboardPage,
     meta: {
-      title: "Administration",
+      title: 'Administration',
       requiresAuth: true,
-      roles: ["admin"],
-      layout: "admin",
+      roles: ['admin'],
+      layout: 'admin',
     },
   },
 ];

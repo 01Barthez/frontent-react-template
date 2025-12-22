@@ -1,12 +1,12 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const orderStatusSchema = z.enum([
-  "pending",
-  "confirmed",
-  "preparing",
-  "ready",
-  "delivered",
-  "cancelled",
+  'pending',
+  'confirmed',
+  'preparing',
+  'ready',
+  'delivered',
+  'cancelled',
 ]);
 
 export const orderItemSchema = z.object({

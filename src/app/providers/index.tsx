@@ -1,9 +1,9 @@
-import React from "react";
-import { QueryProvider } from "./QueryProvider";
-import { AuthProvider } from "./AuthProvider";
-import { I18nProvider } from "./I18nProvider";
-import { ThemeProvider } from "./ThemeProvider";
-import { ErrorBoundary } from "../lib/ErrorBoundary";
+import React from 'react';
+import { QueryProvider } from './QueryProvider';
+import { AuthProvider } from './AuthProvider';
+import { I18nProvider } from './I18nProvider';
+import { ThemeProvider } from './ThemeProvider';
+import { ErrorBoundary } from '../lib/ErrorBoundary';
 
 interface ProvidersProps {
   children: React.ReactNode;

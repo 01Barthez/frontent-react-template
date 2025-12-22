@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export interface CheckoutItem {
   id: string;
@@ -10,11 +10,7 @@ export interface CheckoutItem {
 export interface CheckoutFormProps {
   items: CheckoutItem[];
   total: number;
-  onSubmit: (paymentInfo: {
-    cardNumber: string;
-    expiry: string;
-    cvv: string;
-  }) => void;
+  onSubmit: (paymentInfo: { cardNumber: string; expiry: string; cvv: string }) => void;
   isLoading?: boolean;
 }
 
@@ -24,9 +20,9 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
   onSubmit,
   isLoading,
 }) => {
-  const [cardNumber, setCardNumber] = React.useState("");
-  const [expiry, setExpiry] = React.useState("");
-  const [cvv, setCvv] = React.useState("");
+  const [cardNumber, setCardNumber] = React.useState('');
+  const [expiry, setExpiry] = React.useState('');
+  const [cvv, setCvv] = React.useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,8 +38,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
         <ul>
           {items.map((item) => (
             <li key={item.id}>
-              {item.name} x{item.quantity} - $
-              {(item.price * item.quantity).toFixed(2)}
+              {item.name} x{item.quantity} - ${(item.price * item.quantity).toFixed(2)}
             </li>
           ))}
         </ul>
@@ -82,7 +77,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
           />
         </div>
         <button type="submit" disabled={isLoading}>
-          {isLoading ? "Processing..." : "Complete Order"}
+          {isLoading ? 'Processing...' : 'Complete Order'}
         </button>
       </form>
     </div>

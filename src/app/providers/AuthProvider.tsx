@@ -1,9 +1,9 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 interface User {
   id: string;
   email: string;
-  role: "customer" | "admin";
+  role: 'customer' | 'admin';
 }
 
 interface AuthContextType {
@@ -19,7 +19,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
 };
@@ -39,13 +39,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const login = async (email: string, _password: string) => {
     // TODO: Implémenter la logique de connexion
-    console.log("Login attempt:", email);
+    console.log('Login attempt:', email);
     void _password;
     // Simulation d'une connexion réussie
     setUser({
-      id: "1",
+      id: '1',
       email,
-      role: "customer",
+      role: 'customer',
     });
   };
 

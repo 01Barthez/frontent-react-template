@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 // TODO: Installer et configurer React Query
 // import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 

@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "../../../../shared/ui/Button";
-import { useAuth } from "../../../../app/providers/AuthProvider";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/shared/ui/Button';
+import { useAuth } from '@/app/providers/AuthProvider';
 
-const CustomerDashboardPage: React.FC = () => {
+export const CustomerDashboardPage: React.FC = () => {
   const { user, logout } = useAuth();
 
   return (
@@ -12,9 +12,7 @@ const CustomerDashboardPage: React.FC = () => {
         <div className="bg-white rounded-lg shadow p-6 mb-8">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">
-                Bienvenue, {user?.email}
-              </h1>
+              <h1 className="text-3xl font-bold text-gray-900">Bienvenue, {user?.email}</h1>
               <p className="text-gray-600">Tableau de bord client</p>
             </div>
             <Button onClick={logout} variant="outline">
@@ -26,9 +24,7 @@ const CustomerDashboardPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="bg-white rounded-lg shadow p-6">
             <h3 className="text-xl font-semibold mb-4">Mes commandes</h3>
-            <p className="text-gray-600 mb-4">
-              Consultez vos commandes récentes
-            </p>
+            <p className="text-gray-600 mb-4">Consultez vos commandes récentes</p>
             <Button>Voir mes commandes</Button>
           </div>
 
@@ -55,4 +51,4 @@ const CustomerDashboardPage: React.FC = () => {
   );
 };
 
-export default CustomerDashboardPage;
+// named export at declaration
