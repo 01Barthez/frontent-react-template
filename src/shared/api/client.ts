@@ -1,88 +1,87 @@
+import axios, { AxiosInstance, AxiosError, AxiosRequestConfig } from 'axios';
 import type { ApiError } from '../types';
+import { env } from '../../app/config/env';
 
 class ApiClient {
-  private baseURL: string;
+  private client: AxiosInstance;
 
   constructor(baseURL: string) {
-    this.baseURL = baseURL;
-  }
-
-  private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
-    const url = `${this.baseURL}${endpoint}`;
-
-    const config: RequestInit = {
+    this.client = axios.create({
+      baseURL,
       headers: {
         'Content-Type': 'application/json',
-        ...options.headers,
       },
-      ...options,
-    };
+      timeout: 30_000,
+    });
 
-    // TODO: Ajouter automatiquement le token d'authentification
-    // const token = getAuthToken();
-    // if (token) {
-    //   config.headers = {
-    //     ...config.headers,
-    //     Authorization: `Bearer ${token}`,
-    //   };
-    // }
-
-    try {
-      const response = await fetch(url, config);
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        // Throw a plain object shaped like ApiError instead of using a class
-        throw {
-          message: errorData.message || `HTTP error! status: ${response.status}`,
-          code: errorData.code,
-          statusCode: response.status,
-        } as ApiError;
+    // Attach token automatically if present (replace with your auth provider)
+    this.client.interceptors.request.use((config) => {
+      try {
+        if (typeof window !== 'undefined') {
+          const token = localStorage.getItem('authToken');
+          if (token) {
+            config.headers = {
+              ...config.headers,
+              Authorization: `Bearer ${token}`,
+            } as any;
+          }
+        }
+      } catch {
+        // ignore
       }
+      return config;
+    });
 
-      return await response.json();
-    } catch (error: unknown) {
-      // If it's already an ApiError-shaped object, rethrow it
-      if (error && typeof error === 'object' && 'message' in (error as any)) {
-        throw error as ApiError;
+    // Centralized error mapping to ApiError shape
+    this.client.interceptors.response.use(
+      (res) => res,
+      (error: AxiosError) => {
+        if (error.response) {
+          const data = (error.response.data || {}) as any;
+          const apiError: ApiError = {
+            message: data.message || error.message,
+            code: data.code,
+            statusCode: error.response.status,
+          };
+          return Promise.reject(apiError);
+        }
+
+        if (error.request) {
+          return Promise.reject({ message: 'No response received', statusCode: undefined } as ApiError);
+        }
+
+        return Promise.reject({ message: error.message } as ApiError);
       }
-
-      // Erreur réseau ou autre
-      throw { message: 'Network error or unexpected error occurred' } as ApiError;
-    }
+    );
   }
 
-  async get<T>(endpoint: string): Promise<T> {
-    return this.request<T>(endpoint, { method: 'GET' });
+  private async request<T>(config: AxiosRequestConfig): Promise<T> {
+    const response = await this.client.request<T>(config);
+    return response.data as unknown as T;
+  }
+
+  async get<T>(endpoint: string, params?: Record<string, any>): Promise<T> {
+    return this.request<T>({ url: endpoint, method: 'GET', params });
   }
 
   async post<T>(endpoint: string, data?: any): Promise<T> {
-    return this.request<T>(endpoint, {
-      method: 'POST',
-      body: data ? JSON.stringify(data) : undefined,
-    });
+    return this.request<T>({ url: endpoint, method: 'POST', data });
   }
 
   async put<T>(endpoint: string, data?: any): Promise<T> {
-    return this.request<T>(endpoint, {
-      method: 'PUT',
-      body: data ? JSON.stringify(data) : undefined,
-    });
+    return this.request<T>({ url: endpoint, method: 'PUT', data });
   }
 
   async patch<T>(endpoint: string, data?: any): Promise<T> {
-    return this.request<T>(endpoint, {
-      method: 'PATCH',
-      body: data ? JSON.stringify(data) : undefined,
-    });
+    return this.request<T>({ url: endpoint, method: 'PATCH', data });
   }
 
   async delete<T>(endpoint: string): Promise<T> {
-    return this.request<T>(endpoint, { method: 'DELETE' });
+    return this.request<T>({ url: endpoint, method: 'DELETE' });
   }
 }
 
-// TODO: Importer depuis env.ts quand disponible
-const apiClient = new ApiClient('http://localhost:3000/api');
+const apiBase = `${env.API_BASE_URL.replace(/\/$/, '')}/api`;
+const apiClient = new ApiClient(apiBase);
 
 export { apiClient, ApiClient };
