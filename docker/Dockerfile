@@ -13,10 +13,19 @@ WORKDIR /app
 # Copy package manifest first to leverage layer caching
 COPY package.json package.json
 
-# Install dependencies needed for building (no lockfile handling here)
-RUN npm set progress=false \
-  && npm config set depth 0 \
-  && npm install --no-audit --no-fund --silent
+# Install system dependencies required to build native modules on Alpine
+# - python3 + symlink for node-gyp
+# - build-base (gcc, g++, make) for compiling native addons
+# - git in case some packages are installed from git
+RUN apk add --no-cache python3 build-base git libc6-compat && \
+  ln -sf /usr/bin/python3 /usr/bin/python || true
+
+# Install Node dependencies. We enable `unsafe-perm` to avoid permission
+# issues inside containers when node-gyp runs as root during CI builds.
+RUN npm set progress=false && \
+  npm config set depth 0 && \
+  npm config set unsafe-perm true && \
+  npm install --no-audit --no-fund
 
 # Copy source tree
 COPY . .
