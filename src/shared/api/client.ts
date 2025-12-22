@@ -15,7 +15,7 @@ class ApiClient {
     });
 
     // Attach token automatically if present (replace with your auth provider)
-    this.client.interceptors.request.use((config) => {
+    this.client.interceptors.request.use((config: AxiosRequestConfig) => {
       try {
         if (typeof window !== 'undefined') {
           const token = localStorage.getItem('authToken');
@@ -34,7 +34,7 @@ class ApiClient {
 
     // Centralized error mapping to ApiError shape
     this.client.interceptors.response.use(
-      (res) => res,
+      (res: any) => res,
       (error: AxiosError) => {
         if (error.response) {
           const data = (error.response.data || {}) as any;
