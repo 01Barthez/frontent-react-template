@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-set -euo pipefail
+# set -euo pipefail
 
 echo "[scripts] dev: checking environment..."
+
 if command -v bun >/dev/null 2>&1; then
   bun ./scripts/check-env.js || exit 1
 elif command -v node >/dev/null 2>&1; then

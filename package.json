@@ -19,7 +19,7 @@
     "npm": ">=9"
   },
   "scripts": {
-    "dev": "sh ./scripts/dev.sh",
+    "dev": "run dev",
     "start": "sh ./scripts/dev.sh",
     "predev": "sh ./scripts/dev.sh",
 

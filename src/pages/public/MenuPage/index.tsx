@@ -39,3 +39,5 @@ export const MenuPage: React.FC = () => {
     </div>
   );
 };
+
+// named export above

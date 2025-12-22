@@ -1,8 +1,0 @@
-version: '3.8'
-services:
-  # Production-like container (builds image with Dockerfile and serves with nginx)
-  version: '3.8'
-  # Note: this file has been moved to `docker/docker-compose.local.yml`.
-  # Keep this placeholder to help users who may run compose from the repo root.
-  # Use the new file with:
-  #   docker compose -f docker/docker-compose.local.yml up --build app
