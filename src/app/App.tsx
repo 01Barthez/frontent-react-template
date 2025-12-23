@@ -1,18 +1,18 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { routes } from './routes';
-import { ProtectedRoute } from './routes/ProtectedRoute';
-
-const LoadingSpinner = () => (
-  <div className="min-h-screen flex items-center justify-center">
-    <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
-  </div>
-);
+import { LoadingSpinner } from '@/shared/ui/Spinner/Spinner.ui';
+import { ProtectedRoute } from './routes/config/ProtectedRoute';
 
 export const App: React.FC = () => {
+  React.useEffect(() => {
+    // Prefetch important routes on idle to improve perceived navigation speed
+    import('./routes/prefetch').then((m) => m.prefetchRoutes()).catch(() => {});
+  }, []);
+
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background text-foreground">
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             {routes.map((route) => (
