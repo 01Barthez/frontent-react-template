@@ -2,8 +2,11 @@
 # set -euo pipefail
 
 echo "[scripts] test: running unit tests (watch mode)"
-if command -v bun >/dev/null 2>&1; then
-  bun run test
+# Run Vitest in watch mode directly
+if command -v npx >/dev/null 2>&1; then
+  npx vitest --watch
+elif command -v bunx >/dev/null 2>&1; then
+  bunx vitest --watch
 else
-  npm run test
+  ./node_modules/.bin/vitest --watch || echo "vitest not found"
 fi
