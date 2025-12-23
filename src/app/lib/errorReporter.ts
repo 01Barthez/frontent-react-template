@@ -22,13 +22,14 @@ export async function reportError(error: Error, info?: ErrorReportInfo) {
   // Try to forward to Sentry if available at runtime (opt-in via env and install)
     try {
       if (typeof process !== 'undefined' && (process.env.SENTRY_DSN || (window as any).__SENTRY_DSN__)) {
-        // dynamic import; if Sentry not installed this will fail silently
-        // Use @vite-ignore to tell Vite not to pre-resolve this optional dependency during dev-time analysis
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        const Sentry = await import(/* @vite-ignore */ '@sentry/browser');
-        if (Sentry?.captureException) {
-          Sentry.captureException(error, { extra: info });
+        // Attempt a runtime import using a dynamically-created function so bundlers
+        // (Vite/Rollup) do not attempt to statically analyze and resolve the module.
+        // This keeps `@sentry/browser` optional and avoids build-time errors when
+        // it's not installed.
+        const runtimeImport = new Function('modulePath', 'return import(modulePath);');
+        const Sentry = await runtimeImport('@sentry/browser').catch(() => null);
+        if (Sentry && (Sentry as any).captureException) {
+          (Sentry as any).captureException(error, { extra: info });
         }
       }
     } catch (e) {
