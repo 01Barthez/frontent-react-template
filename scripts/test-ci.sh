@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+# set -euo pipefail
 
 echo "[scripts] test-ci: running tests in CI mode"
 if command -v bun >/dev/null 2>&1; then

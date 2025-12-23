@@ -7,8 +7,8 @@ import { ThemeToggle } from '../../../shared/ui/ThemeToggle';
 
 export const HomePage: React.FC = () => {
   return (
-    <div className="min-h-screen max-w-full bg-gradient-to-br from-slate-50 to-sky-50 text-slate-900">
-      <header className="border-b bg-white/60 dark:bg-black/60 backdrop-blur-sm">
+    <div className="min-h-screen max-w-full">
+      <header className="border-b bg-white/60 dark:bg-black/90 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Avatar fallback="FS" />
@@ -79,15 +79,15 @@ export const HomePage: React.FC = () => {
         <section id="docs" className="mt-16">
           <h2 className="text-2xl font-bold mb-4">What you'll find in this template</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            <article className="p-6 bg-white rounded-lg shadow-sm">
+            <article className="p-6 bg-background/85 border rounded-lg shadow-sm">
               <h3 className="font-semibold mb-2">Tooling & Quality</h3>
               <p className="text-sm text-slate-600">Preconfigured ESLint, Prettier, Husky, lint-staged and CI.</p>
             </article>
-            <article className="p-6 bg-white rounded-lg shadow-sm">
+            <article className="p-6 bg-background/85 border rounded-lg shadow-sm">
               <h3 className="font-semibold mb-2">Architecture</h3>
               <p className="text-sm text-slate-600">Feature-first structure, domain entities and shared UI primitives.</p>
             </article>
-            <article className="p-6 bg-white rounded-lg shadow-sm">
+            <article className="p-6 bg-background/85 border rounded-lg shadow-sm">
               <h3 className="font-semibold mb-2">Deploy & Docker</h3>
               <p className="text-sm text-slate-600">Dockerfile, compose for dev and prod-like builds and Vercel deploy workflows.</p>
             </article>
@@ -95,7 +95,7 @@ export const HomePage: React.FC = () => {
         </section>
       </main>
 
-      <footer className="border-t py-6 mt-12 bg-white/30">
+      <footer className="border-t py-2 mt-10 bg-foreground/10">
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-sm text-slate-600">© {new Date().getFullYear()} Frontend Starter</div>
           <div className="flex items-center gap-4">

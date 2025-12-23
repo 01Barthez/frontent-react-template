@@ -3,6 +3,8 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import viteCompression from 'vite-plugin-compression';
+import viteImagemin from 'vite-plugin-imagemin';
 
 // https://vite.dev/config/
 export default defineConfig(() => {
@@ -67,12 +69,58 @@ export default defineConfig(() => {
     );
   }
 
+  // Production-only optimizations
+  if (process.env.NODE_ENV === 'production') {
+    // Compress assets with brotli and gzip
+    plugins.push(
+      viteCompression({
+        algorithm: 'brotliCompress',
+        ext: '.br',
+        deleteOriginFile: false,
+        threshold: 10240,
+      }),
+      viteCompression({
+        algorithm: 'gzip',
+        ext: '.gz',
+        threshold: 10240,
+      }),
+    );
+
+    // Optimize images at build time
+    plugins.push(
+      viteImagemin({
+        gifsicle: { optimizationLevel: 7, interlaced: false },
+        optipng: { optimizationLevel: 7 },
+        mozjpeg: { quality: 75 },
+        pngquant: { quality: [0.7, 0.9], speed: 4 },
+        svgo: { plugins: [{ name: 'removeViewBox' }, { name: 'removeEmptyAttrs', active: false }] },
+      }),
+    );
+  }
+
   return {
     plugins,
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
       },
+    },
+    build: {
+      assetsInlineLimit: 4096,
+      brotliSize: true,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              if (id.includes('react')) return 'vendor.react';
+              return 'vendor';
+            }
+          },
+        },
+      },
+    },
+    esbuild: {
+      drop: process.env.NODE_ENV === 'production' ? ['console', 'debugger'] : [],
     },
   };
 });
