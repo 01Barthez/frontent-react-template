@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <!-- 1️⃣ Meta de base -->
+    <!-- Meta de base -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0F172A" />
 
-    <!-- 2️⃣ SEO & Social -->
+    <!-- SEO & Social -->
     <title>Mon Produit — Proposition de valeur claire</title>
     <meta name="description" content="Description claire et orientée bénéfice (150–160 caractères)." />
     <meta name="robots" content="index, follow" />
@@ -25,7 +25,7 @@
     <meta name="twitter:description" content="Pitch court" />
     <meta name="twitter:image" content="/og-image.png" />
 
-    <!-- 3️⃣ Performance & loading -->
+    <!-- Performance & loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -35,22 +35,22 @@
     <link rel="preload" href="/hero.webp" as="image" type="image/webp" />
     <link rel="preload" href="/src/main.tsx" as="script" />
 
-    <!-- 4️⃣ Branding / Icons / PWA manifest -->
+    <!-- Branding / Icons / PWA manifest -->
     <link rel="icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
 
-    <!-- 5️⃣ Sécurité -->
+    <!-- Sécurité -->
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;" />
 
-    <!-- 6️⃣ Compatibilité -->
+    <!-- Compatibilité -->
     <meta name="format-detection" content="telephone=no" />
 
-    <!-- 7️⃣ Analytics (optionnel, remplacez G-XXXX par votre ID) -->
+    <!-- Analytics (optionnel, remplacez G-XXXX par votre ID) -->
     <!--
       Pour activer : décommenter les deux balises ci-dessous et remplacer G-XXXX.
       Vous pouvez aussi charger l'init via un fichier externe pour éviter l'inline.
@@ -67,17 +67,17 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   </head>
   <body>
-    <!-- 6️⃣ ACCESSIBILITÉ : fallback when JS disabled -->
+    <!-- ACCESSIBILITÉ : fallback when JS disabled -->
     <noscript>
       <div style="padding:1rem;background:#fff;color:#000;text-align:center;">
         Cette application nécessite JavaScript pour fonctionner. Veuillez activer JavaScript ou utiliser un navigateur moderne.
       </div>
     </noscript>
 
-    <!-- 9️⃣ Root React -->
+    <!-- Root React -->
     <div id="root"></div>
 
-    <!-- 🔟 Scripts (module) -->
+    <!-- Scripts (module) -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

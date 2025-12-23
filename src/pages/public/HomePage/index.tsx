@@ -7,8 +7,8 @@ import { ThemeToggle } from '../../../shared/ui/ThemeToggle';
 
 export const HomePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-sky-50 text-slate-900">
-      <header className="border-b bg-white/60 backdrop-blur-sm">
+    <div className="min-h-screen max-w-full bg-gradient-to-br from-slate-50 to-sky-50 text-slate-900">
+      <header className="border-b bg-white/60 dark:bg-black/60 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Avatar fallback="FS" />
@@ -65,14 +65,12 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="flex items-center justify-center">
-            <div className="w-full max-w-lg">
+            <div className="w-full max-w-sm">
               <Image
-                src="/hero.avif"
+                src="/vite.sv"
                 alt="Hero"
-                width={900}
-                height={540}
-                priority
-                className="rounded-xl shadow-xl"
+                // priority
+                className="w-80 h-80 rounded-xl shadow-xl"
               />
             </div>
           </div>

@@ -13,7 +13,7 @@ fi
 
 echo "[scripts] dev: starting dev server"
 if command -v bun >/dev/null 2>&1; then
-  bun run dev
+  vite
 else
-  npm run dev
+  vite
 fi

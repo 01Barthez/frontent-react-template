@@ -2,6 +2,7 @@
   "name": "Frontend Starter",
   "short_name": "Starter",
   "description": "A progressive web app starter (modular) with best practices",
+  "keywords": ["", ""],
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

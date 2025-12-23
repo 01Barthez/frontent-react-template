@@ -16,45 +16,35 @@
   "type": "module",
   "engines": {
     "node": ">=18",
-    "npm": ">=9"
+    "npm": ">=9",
+    "bun": ">=1.3u"
   },
   "scripts": {
-    "dev": "run dev",
+    "dev": "vite",
+    "build": "vite build",
+    "build:dev": "vite build --mode development",
+    "lint": "eslint .",
+
     "start": "sh ./scripts/dev.sh",
     "predev": "sh ./scripts/dev.sh",
-
-    "build": "sh ./scripts/build.sh",
     "prebuild": "sh ./scripts/build.sh",
     "postbuild": "sh ./scripts/build.sh",
-
     "preview": "vite preview",
-
     "typecheck": "tsc -p tsconfig.app.json --noEmit",
-
-    "lint": "sh ./scripts/lint.sh",
     "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
-
     "format": "sh ./scripts/format.sh",
     "format:check": "prettier --check .",
     "format:fix": "prettier --write .",
-
     "md:lint": "markdownlint '**/*.md' -i node_modules",
-
     "test": "sh ./scripts/test.sh",
     "test:watch": "vitest",
     "test:ci": "sh ./scripts/test-ci.sh",
     "test:coverage": "vitest run --coverage",
-
     "validate": "npm run lint && npm run typecheck && npm run test:ci",
-
     "clean": "rimraf dist node_modules",
-
     "prepare": "husky install",
-
     "ci": "sh ./scripts/ci.sh",
-
     "release": "changeset publish || echo 'No changeset configured'",
-
     "storybook": "echo 'storybook not configured'"
   },
   "dependencies": {
@@ -130,7 +120,9 @@
     "not op_mini all"
   ],
   "eslintConfig": {
-    "extends": ["@org/eslint-config"]
+    "extends": [
+      "@org/eslint-config"
+    ]
   },
   "prettier": "@org/prettier-config"
 }
