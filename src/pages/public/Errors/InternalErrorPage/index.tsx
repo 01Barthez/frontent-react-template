@@ -1,7 +1,12 @@
 import React from 'react';
 import { Button } from '@/shared/ui/Button/Button.ui';
 
-export const InternalErrorPage: React.FC<{ error?: Error }> = ({ error }) => {
+export const InternalErrorPage: React.FC<{
+  error?: Error;
+  errorId?: string;
+  onRetry?: () => void;
+  onReport?: () => void;
+}> = ({ error, errorId, onRetry, onReport }) => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background text-foreground">
       <div className="max-w-2xl w-full p-8 rounded-lg shadow">
@@ -16,11 +21,20 @@ export const InternalErrorPage: React.FC<{ error?: Error }> = ({ error }) => {
             </pre>
           )}
 
+          {errorId && (
+            <p className="text-xs text-gray-500 mb-4">Code d'erreur: <strong>{errorId}</strong></p>
+          )}
+
           <div className="flex justify-center gap-4">
-            <Button onClick={() => window.location.reload()}>Rafraîchir</Button>
+            <Button onClick={() => (onRetry ? onRetry() : window.location.reload())}>Rafraîchir</Button>
             <Button onClick={() => (window.location.href = '/')} variant="ghost">
               Retour à l'accueil
             </Button>
+            {onReport && (
+              <Button onClick={onReport} variant="outline">
+                Signaler
+              </Button>
+            )}
           </div>
         </div>
       </div>
