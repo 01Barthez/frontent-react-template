@@ -24,6 +24,10 @@ jobs:
         run: |
           if [ -f package-lock.json ]; then npm ci; else npm install; fi
 
+      - name: Install Husky hooks
+        run: |
+          npm run prepare || npx husky install || true
+
       - name: Format check
         run: npm run format:check
 
