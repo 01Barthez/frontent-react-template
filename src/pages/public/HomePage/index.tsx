@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '../../../shared/ui/Button';
-import { Image } from '../../../shared/ui/Image/Image.ui';
-import { Avatar } from '../../../shared/ui/Avatar/Avatar.ui';
-import { ThemeToggle } from '../../../shared/ui/ThemeToggle';
+import { Button } from '@/shared/ui/Button';
+import { Image } from '@/shared/ui/Image/Image.ui';
+import { Avatar } from '@/shared/ui/Avatar/Avatar.ui';
+import { ThemeToggle } from '@/shared/ui/ThemeToggle';
 
 export const HomePage: React.FC = () => {
   return (
@@ -56,9 +56,9 @@ export const HomePage: React.FC = () => {
               <div>
                 <div className="text-sm text-slate-500">Used by</div>
                 <div className="mt-2 flex items-center gap-3">
-                  <Avatar src="/avatar-0.png" alt="User" fallback="A" />
-                  <Avatar src="/avatar-1.png" alt="User" fallback="B" />
-                  <Avatar src="/avatar-2.png" alt="User" fallback="C" />
+                  <Avatar src="https://i.pravatar.cc/" alt="User" fallback="A" />
+                  <Avatar src="https://i.pravatar.cc/" alt="User" fallback="B" />
+                  <Avatar src="https://i.pravatar.cc/" alt="User" fallback="C" />
                 </div>
               </div>
             </div>
