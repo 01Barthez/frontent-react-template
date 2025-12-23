@@ -20,15 +20,18 @@ export async function reportError(error: Error, info?: ErrorReportInfo) {
   }
 
   // Try to forward to Sentry if available at runtime (opt-in via env and install)
-  try {
-    if (typeof process !== 'undefined' && (process.env.SENTRY_DSN || (window as any).__SENTRY_DSN__)) {
-      // dynamic import; if Sentry not installed this will fail silently
-      const Sentry = await import('@sentry/browser');
-      if (Sentry?.captureException) {
-        Sentry.captureException(error, { extra: info });
+    try {
+      if (typeof process !== 'undefined' && (process.env.SENTRY_DSN || (window as any).__SENTRY_DSN__)) {
+        // dynamic import; if Sentry not installed this will fail silently
+        // Use @vite-ignore to tell Vite not to pre-resolve this optional dependency during dev-time analysis
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        const Sentry = await import(/* @vite-ignore */ '@sentry/browser');
+        if (Sentry?.captureException) {
+          Sentry.captureException(error, { extra: info });
+        }
       }
+    } catch (e) {
+      // ignore failures — this package is optional and should not crash the app
     }
-  } catch (e) {
-    // ignore failures — this package is optional and should not crash the app
-  }
 }
