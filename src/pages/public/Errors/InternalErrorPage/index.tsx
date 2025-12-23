@@ -41,3 +41,5 @@ export const InternalErrorPage: React.FC<{
     </div>
   );
 };
+
+export default InternalErrorPage;
