@@ -1,5 +1,5 @@
+import { useAuth } from '@/app/providers/AuthProvider';
 import React from 'react';
-import { useAuth } from '../providers/AuthProvider';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
